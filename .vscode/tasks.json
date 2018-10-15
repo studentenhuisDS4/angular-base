@@ -1,0 +1,38 @@
+{
+    "version": "2.0.0",
+    "command": "ng",
+    "args": ["serve"],
+    "tasks": [
+        {
+            "label": "serve",
+            "command": "npm start",
+            "type": "shell",
+            "problemMatcher": "$tsc"
+        },
+        {
+            "label": "open -- -o",
+            "command": "npm start",
+            "type": "shell",
+            "problemMatcher": "$tsc"
+        },
+        {
+            "label": "lint",
+            "command": "npm run lint",
+            "type": "shell",
+            "problemMatcher": "$tsc"
+        },
+        {
+            "label": "e2e",
+            "command": "npm run e2e",
+            "type": "shell",
+            "problemMatcher": "$tsc"
+        },
+        {
+            "type": "npm",
+            "script": "start",
+            "problemMatcher": [
+                "$tsc"
+            ]
+        }
+    ]
+}

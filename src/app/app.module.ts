@@ -11,10 +11,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-// Instructions ---->
-// Replace configPlaceholder with environment.firebase
 import { environment } from '../environments/environment';
-import configPlaceholder from '../env';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +19,7 @@ import configPlaceholder from '../env';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(configPlaceholder),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
