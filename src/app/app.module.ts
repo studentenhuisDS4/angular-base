@@ -18,11 +18,11 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    // ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule,
+    // AngularFireStorageModule,
     HttpClientModule
   ],
   providers: [],
