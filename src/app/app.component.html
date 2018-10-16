@@ -4,7 +4,12 @@
   {{ user | json }}
   <hr>
   <button class="button" (click)="auth.signOut()">Sign Out</button>
-
+  <hr/>
+  <h1>
+    {{message}}
+    <br/>
+    {{token}}
+  </h1>
 </div>
 
 <ng-template #login>

@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs'
 export class MessagingService {
 
   currentMessage = new BehaviorSubject(null);
+  public token: any;
 
   constructor(
     private angularFireDB: AngularFireDatabase,
@@ -34,8 +35,9 @@ export class MessagingService {
     this.angularFireAuth.authState.pipe(take(1)).subscribe(
       () => {
         const data = {};
-        data[userId] = token
-        this.angularFireDB.object('fcmTokens/').update(data)
+        data[userId] = token;
+        this.token = token;
+        this.angularFireDB.object('fcmTokens/').update(data);
       })
   }
 
@@ -47,7 +49,7 @@ export class MessagingService {
   requestPermission(userId) {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
-        console.log(token);
+        console.log("Token", token);
         this.updateToken(userId, token);
       },
       (err) => {
