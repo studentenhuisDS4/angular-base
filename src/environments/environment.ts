@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   firebase: {
     apiKey: "AIzaSyAPET0SYMqFiZl4Hu7ocMpuRXfpLEXs6kI",
+    appName: "DS4app",
     authDomain: "ds4app-31795.firebaseapp.com",
     databaseURL: "https://ds4app-31795.firebaseio.com",
     projectId: "ds4app-31795",

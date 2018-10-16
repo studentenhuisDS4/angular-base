@@ -7,12 +7,11 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-// import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireMessaging} from '@angular/fire/messaging';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
+import { MessagingService } from './services/shared/messaging.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,13 +20,13 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    // AngularFireDatabase,
     AngularFireAuthModule,
-    AngularFireMessaging,
-    // AngularFireStorageModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    MessagingService,
+    AngularFireMessaging
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
