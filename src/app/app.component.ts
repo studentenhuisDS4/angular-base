@@ -9,20 +9,21 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  message : any;
-  user: any;
+  message: any;
+  uid: any;
   token: any;
 
-  constructor(public auth: AuthService, 
+  constructor(public auth: AuthService,
     private messagingService: MessagingService,
     private afs: AngularFirestore) {
   }
 
-  ngOnInit() {
-    this.user = this.auth.user$["uid"];
-    this.messagingService.requestPermission(this.user["uid"]);
+  async ngOnInit() {
+    this.uid = this.auth.user$["uid"];
+    console.log(this.uid);
+    this.messagingService.requestPermission(this.uid);
     this.messagingService.receiveMessage();
     this.message = this.messagingService.currentMessage;
-    this.token = this.messagingService.token;
+    console.log(this.message);
   }
 }
