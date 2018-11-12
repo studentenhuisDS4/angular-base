@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { MessagingService } from './services/shared/messaging.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +11,35 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  message: any;
+  currentMessage = new BehaviorSubject(null);
+  message: string;
   uid: any;
   token: any;
 
   constructor(public auth: AuthService,
     private messagingService: MessagingService,
-    private afs: AngularFirestore) {
+    private afs: AngularFirestore,
+    private angularFireMessaging: AngularFireMessaging) {
   }
 
   async ngOnInit() {
     this.uid = this.auth.user$["uid"];
-    console.log(this.uid);
     this.messagingService.requestPermission(this.uid);
-    this.messagingService.receiveMessage();
-    this.message = this.messagingService.currentMessage;
-    console.log(this.message);
+    this.receiveMessage();
+  }
+
+  updateToken() {
+    this.token = this.messagingService.token;
+    console.log(this.token);
+  }
+
+  receiveMessage() {
+    this.angularFireMessaging.messages.subscribe(
+      (payload) => {
+        console.log("Message received", payload);
+        this.currentMessage.next(payload);
+        this.message = this.currentMessage.getValue().notification.title;
+        console.log(this.message);
+      })
   }
 }

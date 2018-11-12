@@ -4,10 +4,12 @@
   {{ user | json }}
   <hr>
   <button class="button" (click)="auth.signOut()">Sign Out</button>
-  <hr/>
-  <h1>
-    {{message}}
-  </h1>
+  <hr />
+  <h4>
+    Last messages: 
+      <span>{{message}}<br /></span>
+  </h4>
+  FCM_token: <br /> {{token}} <a (click)="updateToken()">Update</a>
 </div>
 
 <ng-template #login>
