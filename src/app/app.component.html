@@ -1,15 +1,30 @@
-<h1>Base</h1>
+<div class="content">
+  <div *ngIf="auth.user$ | async as user; else login">
+    <h1>FCM info</h1>
+    <strong>User:</strong> {{ user | json }}
+    <hr>
 
-<div *ngIf="auth.user$ | async as user; else login">
-  {{ user | json }}
-  <hr>
-  <button class="button" (click)="auth.signOut()">Sign Out</button>
-  <hr />
-  <h4>
-    Last messages: 
+    <button class="button" (click)="auth.signOut()">Sign Out</button>
+    <hr />
+
+    <h4>
+      Last messages:
       <span>{{message}}<br /></span>
-  </h4>
-  FCM_token: <br /> {{token}} <a (click)="updateToken()">Update</a>
+    </h4>
+
+    <span>FCM_token: <br />
+      <button class="button" (click)="updateToken()">Get token</button>
+      <small>{{token}}</small>
+    </span>
+    <hr/>
+
+    <h4>Topics:</h4>
+    {{topic}}
+    <input class="form-control" type="text" [(ngModel)]="topic" placeholder="Type topic name" />
+    <br/>
+    <br/>
+    <button class="button" (click)="getTopics(topic)">Get token</button>
+  </div>
 </div>
 
 <ng-template #login>

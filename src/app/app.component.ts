@@ -33,6 +33,11 @@ export class AppComponent {
     console.log(this.token);
   }
 
+  getTopics(topic: string) {
+    // this.messagingService.
+    this.angularFireMessaging.messaging.subscribe
+  }
+
   receiveMessage() {
     this.angularFireMessaging.messages.subscribe(
       (payload) => {
